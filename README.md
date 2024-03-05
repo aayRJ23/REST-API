@@ -21,17 +21,17 @@ Each **Post** object includes the following attributes:
 ## Installation
 
 1. **Clone the repository:**
-   -git clone **https://github.com/aayRJ23/RESTful-API.git**
-   -cd server
+   - git clone **https://github.com/aayRJ23/RESTful-API.git**
+   - cd server
 2. **Install dependencies:**
-   -npm install
+   - npm install
 3. **Set up your MongoDB connection URI:**
-   -Create a .env file in the root directory of your project.
-   -Add the following line to the .env file, replacing <your-mongodb-uri> with your actual MongoDB connection URI:
-   -**MONGO_URL**=<your-mongodb-uri>
+   - Create a .env file in the root directory of your project.
+   - Add the following line to the .env file, replacing <your-mongodb-uri> with your actual MongoDB connection URI:
+   - **MONGO_URL**=<your-mongodb-uri>
 4. **Start the server:**
-   -npm start
-   -The server should now be running on **http://localhost:4000.**
+   - npm start
+   - The server should now be running on **http://localhost:4000.**
 
 ## Directory Structure
 
