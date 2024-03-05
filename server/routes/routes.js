@@ -1,38 +1,37 @@
 const express = require("express");
-const User = require("../models/user");
+const Post = require("../models/post");
 
 const router = express.Router();
 
-//Post Method - New User Creation
+//Post Method - New Post Creation
 router.post("/post", async (req, res) => {
-  const { name, age } = req.body;
-  const user = new User({
-    name,
-    age,
+  const { title, content , author ,date } = req.body;
+  const post = new Post({
+    title, content , author ,date
   });
   try {
-    const userToSave = await user.save();
-    res.status(200).json({ userToSave });
+    const postToSave = await post.save();
+    res.status(200).json({ postToSave });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
 });
 
-//Get all Method - Exiting Users Fetching
+//Get all Method - Exiting Posts Fetching
 router.get("/getAll", async (req, res) => {
   try {
-    const users = await User.find();
-    res.json(users);
+    const posts = await Post.find();
+    res.json(posts);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 });
 
-//Get by ID Method - Fetching Particular User
+//Get by ID Method - Fetching Particular Post
 router.get("/getOne/:id", async (req, res) => {
   try {
-    const user = await User.findById(req.params.id);
-    res.json({ id: user._id, name: user.name });
+    const post = await Post.findById(req.params.id);
+    res.json({ id: post._id, name: post.title , content:post.content, author:post.author , date:post.date });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
@@ -45,7 +44,7 @@ router.patch("/update/:id", async (req, res) => {
     const updatedData = req.body;
     const options = { new: true };
 
-    const result = await User.findByIdAndUpdate(id, updatedData, options);
+    const result = await Post.findByIdAndUpdate(id, updatedData, options);
     res.send(result);
   } catch (error) {
     res.status(400).json({ message: error.message });
@@ -56,8 +55,8 @@ router.patch("/update/:id", async (req, res) => {
 router.delete("/delete/:id", async (req, res) => {
   try {
     const id = req.params.id;
-    const user = await User.findByIdAndDelete(id);
-    res.send(`Document of ${user.name} has been deleted..`);
+    const post = await Post.findByIdAndDelete(id);
+    res.send(`Post of ${post.author} , named as ${post.title} has been deleted..`);
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
